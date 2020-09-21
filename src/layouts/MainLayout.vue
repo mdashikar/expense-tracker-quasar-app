@@ -25,13 +25,13 @@
       >
         <q-scroll-area style="height: calc(100% - 150px); margin-top: 150px; border-right: 1px solid #ddd">
           <q-list padding>
-            <q-item active clickable v-ripple>
+            <q-item active clickable v-ripple exact v-for="item in linksData" :key="item.title" :to="item.link">
               <q-item-section avatar>
-                <q-icon name="inbox" />
+                <q-icon :name="item.icon" style="font-size: 2em;" />
               </q-item-section>
 
               <q-item-section>
-                Inbox
+                {{item.title}}
               </q-item-section>
             </q-item>
 
@@ -61,46 +61,14 @@
 
 const linksData = [
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
+    title: 'Expense',
+    icon: 'list',
+    link: '/'
   },
   {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
+    title: 'Settings',
+    icon: 'settings',
+    link: '/settings'
   }
 ];
 
@@ -109,6 +77,7 @@ export default {
   data () {
     return {
       leftDrawerOpen: false,
+      linksData,
     }
   }
 }
