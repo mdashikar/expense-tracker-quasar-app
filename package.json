@@ -15,7 +15,8 @@
         "core-js": "^3.6.5",
         "firebase": "^7.21.0",
         "gsap": "^3.5.1",
-        "quasar": "^1.0.0"
+        "quasar": "^1.0.0",
+        "tailwindcss": "^1.8.10"
     },
     "devDependencies": {
         "@quasar/app": "^2.0.0",
