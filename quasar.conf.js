@@ -8,7 +8,7 @@
 /* eslint-env node */
 const envparser = require('./src/config/envparser.js')
 
-
+const notify = require('quasar')
 module.exports = function( /* ctx */ ) {
     return {
         // https://quasar.dev/quasar-cli/supporting-ts
@@ -21,7 +21,7 @@ module.exports = function( /* ctx */ ) {
         // --> boot files are part of "main.js"
         // https://quasar.dev/quasar-cli/boot-files
         boot: [
-
+            'firebase',
         ],
 
         // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -86,7 +86,13 @@ module.exports = function( /* ctx */ ) {
         framework: {
             iconSet: 'material-icons', // Quasar icon set
             lang: 'en-us', // Quasar language pack
-            config: {},
+            // Quasar plugins
+            plugins: [
+                'Notify'
+            ],
+            config: {
+                notify
+            },
 
             // Possible values for "importStrategy":
             // * 'auto' - (DEFAULT) Auto-import needed Quasar components & directives
@@ -100,8 +106,7 @@ module.exports = function( /* ctx */ ) {
             // components: [],
             // directives: [],
 
-            // Quasar plugins
-            plugins: []
+
         },
 
         // animations: 'all', // --- includes all animations

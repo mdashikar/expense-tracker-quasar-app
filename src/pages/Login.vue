@@ -12,6 +12,7 @@
                     <img src="~/assets/login_re_4vu2.svg" alt="">
                 </div>
                 <!-- Col -->
+                <!-- Login view --> 
                 <div v-if="isLogin" class="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
                     <h3 class="pt-4 text-2xl text-center">Welcome Back!</h3>
                     <form class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
@@ -24,6 +25,7 @@
                                 id="email"
                                 type="text"
                                 placeholder="email"
+                                v-model="user.email"
                             />
                         </div>
                         <div class="mb-4">
@@ -35,6 +37,7 @@
                                 id="password"
                                 type="password"
                                 placeholder="******************"
+                                v-model="user.password"
                             />
                             <p class="text-xs italic text-red-500">Please choose a password.</p>
                         </div>
@@ -48,6 +51,7 @@
                             <button
                                 class="w-full px-4 py-2 font-bold text-white bg-indigo-500 rounded-full hover:bg-indigo-700 focus:outline-none focus:shadow-outline"
                                 type="button"
+                                @click.prevent="signIn"
                             >
                                 Sign In
                             </button>
@@ -84,6 +88,7 @@
                         
                     </form>
                 </div>
+                <!-- signup view -->
                 <div v-if="!isLogin" class="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
                     <h3 class="pt-4 text-2xl text-center">Hi there! Let's make this personal</h3>
                     <form class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
@@ -166,7 +171,27 @@
 export default {
     data() {
         return {
-            isLogin: false
+            isLogin: false,
+            user: {
+                email: '',
+                password: ''
+            }
+        }
+    },
+    methods:{
+        signIn () {
+            let credentials = {
+                email: this.user.email,
+                password: this.user.password
+            }
+            this.$store.dispatch('auth/signIn', credentials)
+                .then(user => {
+                    this.$router.replace({ name: 'dashboard' }).catch(() => {})
+                })
+                .catch(error => {
+                    this.$q.notify('Invalid Login!')
+                    console.error(`Not signed in: ${error.message}`)
+                })
         }
     }
     

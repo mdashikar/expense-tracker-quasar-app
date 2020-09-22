@@ -5,11 +5,14 @@ const routes = [{
     },
     {
         path: '/login',
+        name: 'login',
         component: () =>
             import ('pages/Login.vue'),
     },
     {
         path: '/dashboard',
+        meta: { authRequired: true },
+        name: 'dashboard',
         component: () =>
             import ('layouts/MainLayout.vue'),
         children: [{

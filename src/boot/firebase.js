@@ -1,10 +1,10 @@
-import Firebase from 'firebase/app'
-import 'firebase/firestore' // eslint-disable-line
+import * as firebase from "firebase/app";
+import "firebase/firestore";
 import firebaseConfig from '../../firebase.conf'
 
 export default ({ Vue }) => {
     // Initialize Firebase from settings
-    Firebase.initializeApp(firebaseConfig)
+    firebase.initializeApp(firebaseConfig)
 
-    Vue.prototype.$firebase = Firebase
+    Vue.prototype.$firebase = firebase
 }
