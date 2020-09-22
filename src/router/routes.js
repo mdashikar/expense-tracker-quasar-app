@@ -4,6 +4,11 @@ const routes = [{
             import ('pages/Home.vue'),
     },
     {
+        path: '/login',
+        component: () =>
+            import ('pages/Login.vue'),
+    },
+    {
         path: '/dashboard',
         component: () =>
             import ('layouts/MainLayout.vue'),
