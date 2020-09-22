@@ -6,192 +6,194 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
 /* eslint-env node */
+const envparser = require('./src/config/envparser.js')
 
-module.exports = function (/* ctx */) {
-  return {
-    // https://quasar.dev/quasar-cli/supporting-ts
-    supportTS: false,
 
-    // https://quasar.dev/quasar-cli/prefetch-feature
-    // preFetch: true,
+module.exports = function( /* ctx */ ) {
+    return {
+        // https://quasar.dev/quasar-cli/supporting-ts
+        supportTS: false,
 
-    // app boot file (/src/boot)
-    // --> boot files are part of "main.js"
-    // https://quasar.dev/quasar-cli/boot-files
-    boot: [
-      
-    ],
+        // https://quasar.dev/quasar-cli/prefetch-feature
+        // preFetch: true,
 
-    // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
-    css: [
-      'app.scss'
-    ],
+        // app boot file (/src/boot)
+        // --> boot files are part of "main.js"
+        // https://quasar.dev/quasar-cli/boot-files
+        boot: [
 
-    // https://github.com/quasarframework/quasar/tree/dev/extras
-    extras: [
-      // 'ionicons-v4',
-      // 'mdi-v5',
-      // 'fontawesome-v5',
-      // 'eva-icons',
-      // 'themify',
-      // 'line-awesome',
-      // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
+        ],
 
-      'roboto-font', // optional, you are not bound to it
-      'material-icons', // optional, you are not bound to it
-    ],
+        // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
+        css: [
+            'app.scss'
+        ],
 
-    // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
-    build: {
-      vueRouterMode: 'hash', // available values: 'hash', 'history'
+        // https://github.com/quasarframework/quasar/tree/dev/extras
+        extras: [
+            // 'ionicons-v4',
+            // 'mdi-v5',
+            // 'fontawesome-v5',
+            // 'eva-icons',
+            // 'themify',
+            // 'line-awesome',
+            // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
 
-      // transpile: false,
+            'roboto-font', // optional, you are not bound to it
+            'material-icons', // optional, you are not bound to it
+        ],
 
-      // Add dependencies for transpiling with Babel (Array of string/regex)
-      // (from node_modules, which are by default not transpiled).
-      // Applies only if "transpile" is set to true.
-      // transpileDependencies: [],
+        // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
+        build: {
+            env: envparser(),
+            vueRouterMode: 'history', // available values: 'hash', 'history'
 
-      // rtl: false, // https://quasar.dev/options/rtl-support
-      // preloadChunks: true,
-      // showProgress: false,
-      // gzip: true,
-      // analyze: true,
+            // transpile: false,
 
-      // Options below are automatically set depending on the env, set them if you want to override
-      // extractCSS: false,
+            // Add dependencies for transpiling with Babel (Array of string/regex)
+            // (from node_modules, which are by default not transpiled).
+            // Applies only if "transpile" is set to true.
+            // transpileDependencies: [],
 
-      // https://quasar.dev/quasar-cli/handling-webpack
-      extendWebpack (cfg) {
-cfg.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /node_modules/
-        })
-      },
-    },
+            // rtl: false, // https://quasar.dev/options/rtl-support
+            // preloadChunks: true,
+            // showProgress: false,
+            // gzip: true,
+            // analyze: true,
 
-    // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
-    devServer: {
-      https: false,
-      port: 8080,
-      open: true // opens browser window automatically
-    },
+            // Options below are automatically set depending on the env, set them if you want to override
+            // extractCSS: false,
 
-    // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework
-    framework: {
-      iconSet: 'material-icons', // Quasar icon set
-      lang: 'en-us', // Quasar language pack
-      config: {},
+            // https://quasar.dev/quasar-cli/handling-webpack
+            extendWebpack(cfg) {
+                cfg.module.rules.push({
+                    enforce: 'pre',
+                    test: /\.(js|vue)$/,
+                    loader: 'eslint-loader',
+                    exclude: /node_modules/
+                })
+            },
+        },
 
-      // Possible values for "importStrategy":
-      // * 'auto' - (DEFAULT) Auto-import needed Quasar components & directives
-      // * 'all'  - Manually specify what to import
-      importStrategy: 'auto',
+        // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
+        devServer: {
+            https: false,
+            port: 8080,
+            open: true // opens browser window automatically
+        },
 
-      // For special cases outside of where "auto" importStrategy can have an impact
-      // (like functional components as one of the examples),
-      // you can manually specify Quasar components/directives to be available everywhere:
-      //
-      // components: [],
-      // directives: [],
+        // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework
+        framework: {
+            iconSet: 'material-icons', // Quasar icon set
+            lang: 'en-us', // Quasar language pack
+            config: {},
 
-      // Quasar plugins
-      plugins: []
-    },
+            // Possible values for "importStrategy":
+            // * 'auto' - (DEFAULT) Auto-import needed Quasar components & directives
+            // * 'all'  - Manually specify what to import
+            importStrategy: 'auto',
 
-    // animations: 'all', // --- includes all animations
-    // https://quasar.dev/options/animations
-    animations: [],
+            // For special cases outside of where "auto" importStrategy can have an impact
+            // (like functional components as one of the examples),
+            // you can manually specify Quasar components/directives to be available everywhere:
+            //
+            // components: [],
+            // directives: [],
 
-    // https://quasar.dev/quasar-cli/developing-ssr/configuring-ssr
-    ssr: {
-      pwa: false
-    },
+            // Quasar plugins
+            plugins: []
+        },
 
-    // https://quasar.dev/quasar-cli/developing-pwa/configuring-pwa
-    pwa: {
-      workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
-      workboxOptions: {}, // only for GenerateSW
-      manifest: {
-        name: `Expense Tracker`,
-        short_name: `Expense Tracker`,
-        description: `A basic app to store expenses`,
-        display: 'standalone',
-        orientation: 'portrait',
-        background_color: '#ffffff',
-        theme_color: '#027be3',
-        icons: [
-          {
-            src: 'icons/icon-128x128.png',
-            sizes: '128x128',
-            type: 'image/png'
-          },
-          {
-            src: 'icons/icon-192x192.png',
-            sizes: '192x192',
-            type: 'image/png'
-          },
-          {
-            src: 'icons/icon-256x256.png',
-            sizes: '256x256',
-            type: 'image/png'
-          },
-          {
-            src: 'icons/icon-384x384.png',
-            sizes: '384x384',
-            type: 'image/png'
-          },
-          {
-            src: 'icons/icon-512x512.png',
-            sizes: '512x512',
-            type: 'image/png'
-          }
-        ]
-      }
-    },
+        // animations: 'all', // --- includes all animations
+        // https://quasar.dev/options/animations
+        animations: [],
 
-    // Full list of options: https://quasar.dev/quasar-cli/developing-cordova-apps/configuring-cordova
-    cordova: {
-      // noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
-    },
+        // https://quasar.dev/quasar-cli/developing-ssr/configuring-ssr
+        ssr: {
+            pwa: false
+        },
 
-    // Full list of options: https://quasar.dev/quasar-cli/developing-capacitor-apps/configuring-capacitor
-    capacitor: {
-      hideSplashscreen: true
-    },
+        // https://quasar.dev/quasar-cli/developing-pwa/configuring-pwa
+        pwa: {
+            workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
+            workboxOptions: {}, // only for GenerateSW
+            manifest: {
+                name: `Expense Tracker`,
+                short_name: `Expense Tracker`,
+                description: `A basic app to store expenses`,
+                display: 'standalone',
+                orientation: 'portrait',
+                background_color: '#ffffff',
+                theme_color: '#027be3',
+                icons: [{
+                        src: 'icons/icon-128x128.png',
+                        sizes: '128x128',
+                        type: 'image/png'
+                    },
+                    {
+                        src: 'icons/icon-192x192.png',
+                        sizes: '192x192',
+                        type: 'image/png'
+                    },
+                    {
+                        src: 'icons/icon-256x256.png',
+                        sizes: '256x256',
+                        type: 'image/png'
+                    },
+                    {
+                        src: 'icons/icon-384x384.png',
+                        sizes: '384x384',
+                        type: 'image/png'
+                    },
+                    {
+                        src: 'icons/icon-512x512.png',
+                        sizes: '512x512',
+                        type: 'image/png'
+                    }
+                ]
+            }
+        },
 
-    // Full list of options: https://quasar.dev/quasar-cli/developing-electron-apps/configuring-electron
-    electron: {
-      bundler: 'packager', // 'packager' or 'builder'
+        // Full list of options: https://quasar.dev/quasar-cli/developing-cordova-apps/configuring-cordova
+        cordova: {
+            // noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
+        },
 
-      packager: {
-        // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
+        // Full list of options: https://quasar.dev/quasar-cli/developing-capacitor-apps/configuring-capacitor
+        capacitor: {
+            hideSplashscreen: true
+        },
 
-        // OS X / Mac App Store
-        // appBundleId: '',
-        // appCategoryType: '',
-        // osxSign: '',
-        // protocol: 'myapp://path',
+        // Full list of options: https://quasar.dev/quasar-cli/developing-electron-apps/configuring-electron
+        electron: {
+            bundler: 'packager', // 'packager' or 'builder'
 
-        // Windows only
-        // win32metadata: { ... }
-      },
+            packager: {
+                // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
 
-      builder: {
-        // https://www.electron.build/configuration/configuration
+                // OS X / Mac App Store
+                // appBundleId: '',
+                // appCategoryType: '',
+                // osxSign: '',
+                // protocol: 'myapp://path',
 
-        appId: 'expense-tracker'
-      },
+                // Windows only
+                // win32metadata: { ... }
+            },
 
-      // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration
-      nodeIntegration: true,
+            builder: {
+                // https://www.electron.build/configuration/configuration
 
-      extendWebpack (/* cfg */) {
-        // do something with Electron main process Webpack cfg
-        // chainWebpack also available besides this extendWebpack
-      }
+                appId: 'expense-tracker'
+            },
+
+            // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration
+            nodeIntegration: true,
+
+            extendWebpack( /* cfg */ ) {
+                // do something with Electron main process Webpack cfg
+                // chainWebpack also available besides this extendWebpack
+            }
+        }
     }
-  }
 }
