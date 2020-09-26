@@ -101,6 +101,7 @@
                                 id="fullName"
                                 type="text"
                                 placeholder="Full name"
+                                v-model="userInfo.fullName"
                             />
                         </div>
                         <div class="mb-4">
@@ -112,6 +113,7 @@
                                 id="email"
                                 type="text"
                                 placeholder="Email"
+                                v-model="userInfo.email"
                             />
                         </div>
                         <div class="mb-4">
@@ -119,12 +121,14 @@
                                 Password
                             </label>
                             <input
-                                class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border border-red-500 rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                 id="password"
                                 type="password"
                                 placeholder="******************"
+                                :class="{'border-red-500' : userInfo.password.length < 1}"
+                                 v-model="userInfo.password"
                             />
-                            <p class="text-xs italic text-red-500">Please choose a password.</p>
+                            <p class="text-xs italic text-red-500" v-if="userInfo.password.length < 1">Please choose a password.</p>
                         </div>
                         <div class="mb-4">
                             <input class="mr-2 leading-tight" type="checkbox" id="checkbox_id" />
@@ -133,12 +137,14 @@
                             </label>
                         </div>
                         <div class="mb-6 text-center">
-                            <button
+                            <q-btn
                                 class="w-full px-4 py-2 font-bold text-white bg-indigo-400 rounded-full hover:bg-indigo-700 focus:outline-none focus:shadow-outline"
                                 type="button"
+                                :loading="loading"
+                                @click="signUp"
                             >
                                 Sign Up
-                            </button>
+                            </q-btn>
 
                         </div>
                         <hr class="mb-6 border-t" />
@@ -168,6 +174,9 @@
 </div>
 </template>
 <script>
+import firebase from "firebase";
+const db = firebase.firestore();
+
 export default {
     data() {
         return {
@@ -175,7 +184,13 @@ export default {
             user: {
                 email: '',
                 password: ''
-            }
+            },
+            userInfo: {
+                fullName: '',
+                email: '',
+                password: ''
+            },
+            loading : false
         }
     },
     methods:{
@@ -192,9 +207,31 @@ export default {
                     this.$q.notify('Invalid Login!')
                     console.error(`Not signed in: ${error.message}`)
                 })
-        }
+        },
+        signUp (){
+            this.loading = true
+            firebase
+                .auth()
+                .createUserWithEmailAndPassword(this.userInfo.email, this.userInfo.password)
+                .then(user => {
+                    db.collection("users")
+                        .doc(user.user.uid)
+                        .set({
+                            id: user.user.uid,
+                            full_name: this.userInfo.fullName,
+                            email:  this.userInfo.email,
+                            timestamp: Date.now()
+                        });
+                     this.loading = false;
+                     this.$store.commit('auth/SET_USER',  user)
+                     this.$router.push('/dashboard')
+                })
+                .catch(e => {
+                    this.$q.notify(`${e}`)
+                    this.loading = false;
+                });
+            }
     }
-    
 }
 </script>
 <style lang="scss" scoped>

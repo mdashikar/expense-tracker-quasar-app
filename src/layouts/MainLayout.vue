@@ -83,12 +83,12 @@ export default {
   methods: {
     logout(){
       this.$store.dispatch('auth/signOut')
-                .then(user => {
-                    this.$router.replace({ name: 'home' }).catch(() => {})
-                })
-                .catch(error => {
-                    this.$q.notify('Error occured while logging out user!')
-                })
+        .then(user => {
+            this.$router.replace({ name: 'home' }).catch(() => {})
+        })
+        .catch(error => {
+            this.$q.notify('Error occured while logging out user!')
+        })
     }
   }
 }
