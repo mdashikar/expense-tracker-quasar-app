@@ -14,7 +14,7 @@
         <q-toolbar-title>
           Expense Tracker
         </q-toolbar-title>
-
+        <q-btn flat dense icon="power_settings_new" label="Logout" @click="logout" />
       </q-toolbar>
     </q-header>
 
@@ -78,6 +78,17 @@ export default {
     return {
       leftDrawerOpen: false,
       linksData,
+    }
+  },
+  methods: {
+    logout(){
+      this.$store.dispatch('auth/signOut')
+                .then(user => {
+                    this.$router.replace({ name: 'home' }).catch(() => {})
+                })
+                .catch(error => {
+                    this.$q.notify('Error occured while logging out user!')
+                })
     }
   }
 }
