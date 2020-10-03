@@ -63,7 +63,7 @@ const linksData = [
   {
     title: 'Expense',
     icon: 'list',
-    link: '/'
+    link: '/dashboard'
   },
   {
     title: 'Settings',
