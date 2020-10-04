@@ -201,7 +201,7 @@ export default {
             }
             this.$store.dispatch('auth/signIn', credentials)
                 .then(user => {
-                    this.$router.replace({ name: 'dashboard' }).catch(() => {})
+                    this.$router.push('/dashboard')
                 })
                 .catch(error => {
                     this.$q.notify('Invalid Login!')
