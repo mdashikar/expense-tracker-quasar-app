@@ -5,18 +5,21 @@
         <section class="head flex p-4">
           <q-icon size="lg" name="local_mall" color="text-white pt-4" />
           <h2 class="text-3xl font-bold text-blue-600 ">Home Wallet</h2>
-          
         </section>
         <section class="body-font">
           <div class="px-2 mx-auto">
             <div class="flex flex-wrap">
-              <div class="flex">
-                <h2 class="text-lg text-gray-800 font-medium px-4">
-                  Monday October 15, 2020
-                </h2>
-                <h6 class="justify-end text-md text-gray-600 font-medium">
-                  Valued: $140.00
-                </h6>
+              <div class="flex p-2 lg:w-3/3 md:w-2/2 w-full">
+                <div class="flex-1">
+                  <h2 class="text-lg text-gray-800 font-medium">
+                    Monday October 15, 2020
+                  </h2>
+                </div>
+                <div class="justify-end">
+                  <h6 class="text-md text-gray-600 font-medium py-4">
+                    Valued: $140.00
+                  </h6>
+                </div>
               </div>
               <div class="p-2 lg:w-3/3 md:w-2/2 w-full ">
                 <div
@@ -32,6 +35,10 @@
                       Restaurants & Cafe
                     </h2>
                     <p class="text-gray-500 text-lg">20 August 2020</p>
+                  </div>
+                  <div class="justify-end">
+                    <q-btn icon="edit" class="mx-2" />
+                    <q-btn icon="clear" class="mx-2"/>
                   </div>
                 </div>
               </div>
@@ -50,6 +57,10 @@
                     </h2>
                     <p class="text-gray-500 text-lg">20 Sept. 2020</p>
                   </div>
+                  <div class="justify-end">
+                    <q-btn icon="edit" class="mx-2" />
+                    <q-btn icon="clear" class="mx-2"/>
+                  </div>
                 </div>
               </div>
             </div>
@@ -59,7 +70,7 @@
       <div class="col-span-1 bg-gray-200 right-side px-6">
         <section class="wallets border-b">
           <h4 class="text-2xl font-bold text-gray-600 pt-4 mb-2">Wallets</h4>
-           <a href="#" class="py-2 hover:bg-gray-100 flex">
+          <a href="#" class="py-2 hover:bg-gray-100 flex">
             <div class="text-gray-800">
               <svg
                 fill="none"
@@ -77,7 +88,7 @@
             </div>
             <div class="pl-3">
               <p class="text-sm font-medium text-gray-800 leading-none">
-               Home Wallet
+                Home Wallet
               </p>
               <p class="text-xs text-gray-500">$ 23,000</p>
             </div>
