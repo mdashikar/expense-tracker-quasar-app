@@ -38,7 +38,7 @@
                   </div>
                   <div class="justify-end">
                     <q-btn icon="edit" class="mx-2" />
-                    <q-btn icon="clear" class="mx-2"/>
+                    <q-btn icon="clear" class="mx-2 text-red"/>
                   </div>
                 </div>
               </div>
@@ -59,7 +59,7 @@
                   </div>
                   <div class="justify-end">
                     <q-btn icon="edit" class="mx-2" />
-                    <q-btn icon="clear" class="mx-2"/>
+                    <q-btn icon="clear" class="mx-2 text-red" />
                   </div>
                 </div>
               </div>
